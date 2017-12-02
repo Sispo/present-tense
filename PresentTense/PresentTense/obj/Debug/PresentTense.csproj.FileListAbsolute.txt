@@ -1,0 +1,6 @@
+C:\Users\Sispo\Documents\University\Projects\present-tense\PresentTense\PresentTense\bin\Debug\PresentTense.exe.config
+C:\Users\Sispo\Documents\University\Projects\present-tense\PresentTense\PresentTense\bin\Debug\PresentTense.exe
+C:\Users\Sispo\Documents\University\Projects\present-tense\PresentTense\PresentTense\bin\Debug\PresentTense.pdb
+C:\Users\Sispo\Documents\University\Projects\present-tense\PresentTense\PresentTense\obj\Debug\PresentTense.csprojResolveAssemblyReference.cache
+C:\Users\Sispo\Documents\University\Projects\present-tense\PresentTense\PresentTense\obj\Debug\PresentTense.exe
+C:\Users\Sispo\Documents\University\Projects\present-tense\PresentTense\PresentTense\obj\Debug\PresentTense.pdb

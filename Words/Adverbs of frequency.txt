@@ -1,0 +1,15 @@
+always
+annually
+usually
+regularly
+normally
+often
+sometimes
+occasionally
+rarely
+seldom
+never
+daily
+monthly
+yearly
+weekly

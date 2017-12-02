@@ -1,0 +1,13 @@
+above
+around
+outside
+nearby
+behind
+below
+down
+in
+off
+on
+over
+to
+towards
