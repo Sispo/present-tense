@@ -33,5 +33,21 @@ namespace PushdownAutomaton
                 state.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            
+            return "S" + state + ": Input: " + StackToString(currentInput) + "Stack: " + StackToString(stack);
+        }
+
+        private string StackToString(Stack<string> stack)
+        {
+            string str = "";
+            foreach (var element in currentInput)
+            {
+                str += element + " ";
+            }
+            return str;
+        }
+
     }
 }

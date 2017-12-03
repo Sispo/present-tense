@@ -35,13 +35,12 @@ namespace PushdownAutomaton
 
         public PDARecognitionResult Recognize(string[] input)
         {
-            string[] lowercased = Lowercased(input);
 
-            if (IsInputValid(lowercased))
+            if (IsInputValid(input))
             {
                 var inputStack = new Stack<string>();
 
-                foreach(var element in lowercased.Reverse())
+                foreach(var element in input.Reverse())
                 {
                     inputStack.Push(element);
                 }
@@ -153,19 +152,16 @@ namespace PushdownAutomaton
             return new PDACondition(newCurrentInput, newStack, transition.nextState);
         }
 
-        private string[] Lowercased(string[] input)
-        {
-            return (from element in input
-                   select element.ToLower()).ToArray();
-        }
-
         private bool IsInputValid(string[] input)
         {
             foreach(var element in input)
             {
                 if (!inputAlphabet.Contains(element))
                 {
-                    return false;
+                    var lowercased = element.ToLower();
+                    if (!inputAlphabet.Contains(lowercased)) {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -200,7 +196,8 @@ namespace PushdownAutomaton
                         generatedString.Add(nextTransition.readFromInput);
                         condition.currentInput.Push(nextTransition.readFromInput);
                     }
-
+                    //Console.WriteLine(condition.ToString());
+                    //Console.WriteLine(nextTransition.ToString());
                     condition = ApplyTransition(nextTransition, condition);
                 } else
                 {

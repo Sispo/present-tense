@@ -10,13 +10,11 @@ namespace PresentTense
     {
         public string name { get; private set; }
         public string stackID { get; private set; }
-        public string extendedStackID { get; private set; }
 
-        public PresentTenseWordType(string name, string stackID, string extendedStackID)
+        public PresentTenseWordType(string name, string stackID)
         {
             this.name = name;
             this.stackID = stackID;
-            this.extendedStackID = extendedStackID;
         }
 
         public override bool Equals(object obj)
@@ -34,8 +32,7 @@ namespace PresentTense
         public override int GetHashCode()
         {
             return stackID.GetHashCode() ^
-                name.GetHashCode() ^
-                extendedStackID.GetHashCode();
+                name.GetHashCode();
         }
     }
 }

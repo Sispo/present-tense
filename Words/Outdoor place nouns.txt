@@ -7,13 +7,10 @@ acropolis
 desolation
 remnant
 remains
-henge
 cairn
 circle
 mound
 barrow
-earthworks
-petroglyphs
 lookout
 aerie
 promontory
@@ -38,7 +35,6 @@ seascape
 aurora
 landmark
 battlefield
-trenches
 gambit
 folly
 conquest

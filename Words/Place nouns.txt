@@ -2,7 +2,6 @@ wood
 forest
 copse
 bush
-trees
 stand
 swamp
 marsh
@@ -11,21 +10,16 @@ fen
 bog
 moor
 heath
-fells
 morass
 jungle
 rainforest
-plains
-fields
 grass
 grassland
 savannah
-flats
 prairie
 tundra
 iceberg
 glacier
-snowfields
 hills
 highland
 heights
@@ -33,7 +27,6 @@ plateau
 badland
 kame
 shield
-downs
 downland
 ridge
 ridgeline
@@ -63,8 +56,6 @@ desert
 scrub
 waste
 wasteland
-sands
-dunes
 volcano
 crater
 cone

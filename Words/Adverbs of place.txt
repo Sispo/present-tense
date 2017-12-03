@@ -6,13 +6,16 @@ abroad
 anywhere
 away
 back
-backwards (also backward)
+backwards
 behind
 below
 down
 downstairs
 downhill
-east (etc)
+east
+west
+north
+south
 homewards
 elsewhere
 far

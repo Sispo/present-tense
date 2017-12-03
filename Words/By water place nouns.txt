@@ -8,9 +8,8 @@ bay
 port
 harbour
 fjord
-vike
 cove
-shoals
+shoal
 lagoon
 firth
 bight
@@ -30,7 +29,6 @@ landing
 mooring
 berth
 quay
-staith
 river
 stream
 creek
@@ -56,8 +54,7 @@ well
 cistern
 reservoir
 waterfall
-falls
-rapids
+fall
 cataract
 cascade
 bridge

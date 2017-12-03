@@ -1,0 +1,69 @@
+Chongqing
+Shanghai
+Delhi
+Beijing
+Mumbai
+Lagos
+Karachi
+Istanbul
+Tokyo
+Bengaluru
+Moscow
+Lahore
+Cairo
+Kinshasa
+Jakarta
+Seoul
+Wenzhou
+Mexico City
+Lima
+London
+Hyderabad
+New York City
+Shenzhen
+Bangkok
+Saint Petersburg
+Ankara
+Singapore
+Casablanca
+Alexandria
+Johannesburg
+Giza
+Los Angeles
+Cape Town
+Berlin
+Madrid
+Buenos Aires
+Kiev
+Salvador
+Rome
+Dubai
+Luanda
+Toronto
+Taipei
+Chicago
+Paris
+Minsk
+Bucharest
+Hamburg
+Manila
+Budapest
+Warsaw
+Almaty
+Montreal
+Barcelona
+Novosibirsk
+Kawasaki
+Munich
+Kharkiv
+Yekaterinburg
+Nizhny Novgorod
+Omsk
+Dakar
+Abu Dhabi
+Monterrey
+Tripoli
+Rostov-on-Don
+T'bilisi
+Cologne
+Tunis

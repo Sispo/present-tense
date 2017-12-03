@@ -15,9 +15,10 @@ namespace Main
 
             var ptapp = new PresentTenseApplication();
 
-            for(int i = 0; i < 10; i++)
+            while(true)
             {
                 Console.WriteLine(ptapp.Generate());
+                Console.ReadKey();
             }
             
         }

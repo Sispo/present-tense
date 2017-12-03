@@ -51,6 +51,7 @@
     <Compile Include="PresentTense\PresentTenseApplication.cs" />
     <Compile Include="PresentTense\PresentTenseWordsLoader.cs" />
     <Compile Include="PresentTense\PresentTenseWordType.cs" />
+    <Compile Include="PresentTense\PTAStackAlphabet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PDA\PushdownAutomaton.cs" />

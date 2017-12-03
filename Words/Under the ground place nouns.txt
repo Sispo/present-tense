@@ -19,7 +19,6 @@ shaft
 vein
 darkness
 shadow
-depths
 void
 tomb
 grave

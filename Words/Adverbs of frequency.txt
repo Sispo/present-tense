@@ -9,7 +9,3 @@ occasionally
 rarely
 seldom
 never
-daily
-monthly
-yearly
-weekly
