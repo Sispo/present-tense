@@ -120,9 +120,10 @@ namespace PresentTense
 
             //IYWT
             AddTransition(transitions, 1, 1, "", a.IYWT, a.I);
-            AddTransition(transitions, 1, 1, "", a.IYWT, a.YOU);
-            AddTransition(transitions, 1, 1, "", a.IYWT, a.WE);
-            AddTransition(transitions, 1, 1, "", a.IYWT, a.THEY);
+            AddTransition(transitions, 1, 1, "", a.IYWT, a.YWT);
+            AddTransition(transitions, 1, 1, "", a.YWT, a.YOU);
+            AddTransition(transitions, 1, 1, "", a.YWT, a.WE);
+            AddTransition(transitions, 1, 1, "", a.YWT, a.THEY);
 
             //HSI
             AddTransition(transitions, 1, 1, "", a.HSI, a.HE);

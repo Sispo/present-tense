@@ -21,9 +21,6 @@ namespace PresentTense
         public string BS = "<BS>";
         public string BP = "<BP>";
 
-        public string IYWT = "<IYWT>";
-        public string HSI = "<HSI>";
-
         public string VS = "<VS>";
         public string VP = "<VP>";
 
@@ -67,7 +64,11 @@ namespace PresentTense
         public string TNS = "<TNS>";
         public string TNP = "<TNP>";
 
+        public string IYWT = "<IYWT>";
+        public string HSI = "<HSI>";
+
         public string I = "<I>";
+        public string YWT = "<YWT>";
         public string YOU = "<YOU>";
         public string WE = "<WE>";
         public string THEY = "<THEY>";
@@ -169,6 +170,7 @@ namespace PresentTense
                 values.Add(ADVOFD);
                 values.Add(ADVOFP);
                 values.Add(ADVOFPP);
+                values.Add(YWT);
 
                 return values;
             }
