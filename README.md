@@ -24,5 +24,5 @@ It generates such sentences as:
 >
 >Mckenzie quickly cheats.
 
-It is build on [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar/) and [pushdown automaton](https://en.wikipedia.org/wiki/Pushdown_automaton).
+It is build on [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar/) using [pushdown automaton](https://en.wikipedia.org/wiki/Pushdown_automaton).
 [Source project for pushdown automaton](https://github.com/Sispo/pushdown-automaton) 
