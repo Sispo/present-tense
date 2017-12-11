@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{5074A0E5-36C5-4320-BBAF-891A52361B68}|Default">
+  <MonoDevelop.Ide.ItemProperties.PresentTense PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PresentTense/PresentTense/PresentTenseApplication.cs">
+    <Files>
+      <File FileName="PresentTense/PresentTense/PresentTenseApplication.cs" Line="116" Column="13" />
+      <File FileName="PresentTense/Program.cs" Line="17" Column="13" />
+      <File FileName="PresentTense/PresentTense/PTAStackAlphabet.cs" Line="1" Column="1" />
+      <File FileName="PresentTense/PresentTense/PresentTenseWordType.cs" Line="1" Column="1" />
+      <File FileName="PresentTense/PresentTense/PresentTenseWordsLoader.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

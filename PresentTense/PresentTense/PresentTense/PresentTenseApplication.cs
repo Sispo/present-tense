@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PushdownAutomaton;
 using Extensions;
 
@@ -107,160 +105,161 @@ namespace PresentTense
 
             var a = stackAlphabet;
 
+            transitions.Add(new PDATransition(0,1,"",PDA.initialStackSymbol,a.S,PDA.initialStackSymbol));
+
+            void AddProductionRule(string popElement, params string[] pushElement)
+            {
+                transitions.Add(new PDATransition(1, 1, "", popElement, pushElement));
+            }
+
             //S
-            AddTransition(transitions, 0, 1, "", PDA.startStackElement, a.S, PDA.startStackElement);
-            AddTransition(transitions, 1, 1, "", a.S, a.SB);
-            AddTransition(transitions, 1, 1, "", a.S, a.B);
-            AddTransition(transitions, 1, 1, "", a.S, a.DMPF, a.B);
-            AddTransition(transitions, 1, 1, "", a.S, a.B, a.DMPF);
+            AddProductionRule(a.S, a.SB);
+            AddProductionRule(a.S, a.B);
+            AddProductionRule(a.S, a.DMPF, a.B);
+            AddProductionRule(a.S, a.B, a.DMPF);
 
             //SB
-            AddTransition(transitions, 1, 1, "", a.SB, a.SBWPP);
-            AddTransition(transitions, 1, 1, "", a.SB, a.SBWPS);
+            AddProductionRule(a.SB, a.SBWPP);
+            AddProductionRule(a.SB, a.SBWPS);
 
             //IYWT
-            AddTransition(transitions, 1, 1, "", a.IYWT, a.I);
-            AddTransition(transitions, 1, 1, "", a.IYWT, a.YWT);
-            AddTransition(transitions, 1, 1, "", a.YWT, a.YOU);
-            AddTransition(transitions, 1, 1, "", a.YWT, a.WE);
-            AddTransition(transitions, 1, 1, "", a.YWT, a.THEY);
+            AddProductionRule(a.IYWT, a.I);
+            AddProductionRule(a.IYWT, a.YWT);
+            AddProductionRule(a.YWT, a.YOU);
+            AddProductionRule(a.YWT, a.WE);
+            AddProductionRule(a.YWT, a.THEY);
 
             //HSI
-            AddTransition(transitions, 1, 1, "", a.HSI, a.HE);
-            AddTransition(transitions, 1, 1, "", a.HSI, a.SHE);
-            AddTransition(transitions, 1, 1, "", a.HSI, a.IT);
+            AddProductionRule(a.HSI, a.HE);
+            AddProductionRule(a.HSI, a.SHE);
+            AddProductionRule(a.HSI, a.IT);
 
             //SBWPP
-            AddTransition(transitions, 1, 1, "", a.SBWPP, a.IYWT);
-            AddTransition(transitions, 1, 1, "", a.SBWPP, a.SBP);
+            AddProductionRule(a.SBWPP, a.IYWT);
+            AddProductionRule(a.SBWPP, a.SBP);
 
             //SBWPS
-            AddTransition(transitions, 1, 1, "", a.SBWPS, a.HSI);
-            AddTransition(transitions, 1, 1, "", a.SBWPS, a.SBS);
+            AddProductionRule(a.SBWPS, a.HSI);
+            AddProductionRule(a.SBWPS, a.SBS);
 
             //B
-            AddTransition(transitions, 1, 1, "", a.B, a.BS);
-            AddTransition(transitions, 1, 1, "", a.B, a.BP);
+            AddProductionRule(a.B, a.BS);
+            AddProductionRule(a.B, a.BP);
 
             //BS
-            AddTransition(transitions, 1, 1, "", a.BS, a.SBWPS, a.VS);
-            AddTransition(transitions, 1, 1, "", a.BS, a.SBADVMVS);
-            AddTransition(transitions, 1, 1, "", a.BS, a.SBADVFVS);
+            AddProductionRule(a.BS, a.SBWPS, a.VS);
+            AddProductionRule(a.BS, a.SBADVMVS);
+            AddProductionRule(a.BS, a.SBADVFVS);
 
             //BP
-            AddTransition(transitions, 1, 1, "", a.BP, a.SBWPP, a.VP);
-            AddTransition(transitions, 1, 1, "", a.BP, a.SBADVMVP);
-            AddTransition(transitions, 1, 1, "", a.BP, a.SBADVFVP);
+            AddProductionRule(a.BP, a.SBWPP, a.VP);
+            AddProductionRule(a.BP, a.SBADVMVP);
+            AddProductionRule(a.BP, a.SBADVFVP);
 
             //SBP
-            AddTransition(transitions, 1, 1, "", a.SBP, a.THE, a.ADJCTV, a.NP);
-            AddTransition(transitions, 1, 1, "", a.SBP, a.THE, a.NP);
-            AddTransition(transitions, 1, 1, "", a.SBP, a.ADJCTV, a.NP);
-            AddTransition(transitions, 1, 1, "", a.SBP, a.NP);
-            AddTransition(transitions, 1, 1, "", a.SBP, a.SBS, a.AND, a.SBS);
+            AddProductionRule(a.SBP, a.THE, a.ADJCTV, a.NP);
+            AddProductionRule(a.SBP, a.THE, a.NP);
+            AddProductionRule(a.SBP, a.ADJCTV, a.NP);
+            AddProductionRule(a.SBP, a.NP);
+            AddProductionRule(a.SBP, a.SBS, a.AND, a.SBS);
 
             //SBS
-            AddTransition(transitions, 1, 1, "", a.SBS, a.NM);
-            AddTransition(transitions, 1, 1, "", a.SBS, a.THE, a.ADJCTV, a.NS);
-            AddTransition(transitions, 1, 1, "", a.SBS, a.THE, a.NS);
+            AddProductionRule(a.SBS, a.NM);
+            AddProductionRule(a.SBS, a.THE, a.ADJCTV, a.NS);
+            AddProductionRule(a.SBS, a.THE, a.NS);
 
             //SBADVMV
-            AddTransition(transitions, 1, 1, "", a.SBADVMVS, a.SBWPS, a.ADVOFM, a.VS);
-            AddTransition(transitions, 1, 1, "", a.SBADVMVP, a.SBWPP, a.ADVOFM, a.VP);
+            AddProductionRule(a.SBADVMVS, a.SBWPS, a.ADVOFM, a.VS);
+            AddProductionRule(a.SBADVMVP, a.SBWPP, a.ADVOFM, a.VP);
 
             //SBADVFV
-            AddTransition(transitions, 1, 1, "", a.SBADVFVS, a.SBWPS, a.ADVOFF, a.VS);
-            AddTransition(transitions, 1, 1, "", a.SBADVFVP, a.SBWPP, a.ADVOFF, a.VP);
+            AddProductionRule(a.SBADVFVS, a.SBWPS, a.ADVOFF, a.VS);
+            AddProductionRule(a.SBADVFVP, a.SBWPP, a.ADVOFF, a.VP);
 
             //NM
-            AddTransition(transitions, 1, 1, "", a.NM, a.NMB);
-            AddTransition(transitions, 1, 1, "", a.NM, a.NMG);
+            AddProductionRule(a.NM, a.NMB);
+            AddProductionRule(a.NM, a.NMG);
 
             //NS
-            AddTransition(transitions, 1, 1, "", a.NS, a.MNS);
-            AddTransition(transitions, 1, 1, "", a.NS, a.PLACENS);
-            AddTransition(transitions, 1, 1, "", a.NS, a.TNS);
+            AddProductionRule(a.NS, a.MNS);
+            AddProductionRule(a.NS, a.PLACENS);
+            AddProductionRule(a.NS, a.TNS);
 
             //NP
-            AddTransition(transitions, 1, 1, "", a.NP, a.MNP);
-            AddTransition(transitions, 1, 1, "", a.NP, a.PLACENP);
-            AddTransition(transitions, 1, 1, "", a.NP, a.TNP);
+            AddProductionRule(a.NP, a.MNP);
+            AddProductionRule(a.NP, a.PLACENP);
+            AddProductionRule(a.NP, a.TNP);
 
             //PLACEN
-            AddTransition(transitions, 1, 1, "", a.PLACEN, a.PLACENS);
-            AddTransition(transitions, 1, 1, "", a.PLACEN, a.PLACENP);
+            AddProductionRule(a.PLACEN, a.PLACENS);
+            AddProductionRule(a.PLACEN, a.PLACENP);
 
             //PLACENS
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.ARFPNS);
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.BFNS);
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.BWPNS);
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.LPNS);
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.OPNS);
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.PNS);
-            AddTransition(transitions, 1, 1, "", a.PLACENS, a.UGPNS);
+            AddProductionRule(a.PLACENS, a.ARFPNS);
+            AddProductionRule(a.PLACENS, a.BFNS);
+            AddProductionRule(a.PLACENS, a.BWPNS);
+            AddProductionRule(a.PLACENS, a.LPNS);
+            AddProductionRule(a.PLACENS, a.OPNS);
+            AddProductionRule(a.PLACENS, a.PNS);
+            AddProductionRule(a.PLACENS, a.UGPNS);
 
             //PLACENP
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.ARFPNP);
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.BFNP);
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.BWPNP);
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.LPNP);
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.OPNP);
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.PNP);
-            AddTransition(transitions, 1, 1, "", a.PLACENP, a.UGPNP);
+            AddProductionRule(a.PLACENP, a.ARFPNP);
+            AddProductionRule(a.PLACENP, a.BFNP);
+            AddProductionRule(a.PLACENP, a.BWPNP);
+            AddProductionRule(a.PLACENP, a.LPNP);
+            AddProductionRule(a.PLACENP, a.OPNP);
+            AddProductionRule(a.PLACENP, a.PNP);
+            AddProductionRule(a.PLACENP, a.UGPNP);
 
             //C
-            AddTransition(transitions, 1, 1, "", a.C, a.MPC);
-            AddTransition(transitions, 1, 1, "", a.C, a.UKC);
-            AddTransition(transitions, 1, 1, "", a.C, a.USAC);
+            AddProductionRule(a.C, a.MPC);
+            AddProductionRule(a.C, a.UKC);
+            AddProductionRule(a.C, a.USAC);
 
             //VERYTOO
-            AddTransition(transitions, 1, 1, "", a.VERYTOO, a.VERY);
-            AddTransition(transitions, 1, 1, "", a.VERYTOO, a.TOO);
+            AddProductionRule(a.VERYTOO, a.VERY);
+            AddProductionRule(a.VERYTOO, a.TOO);
 
             //DMPF
-            AddTransition(transitions, 1, 1, "", a.DMPF, "");
-            AddTransition(transitions, 1, 1, "", a.DMPF, a.ADVD);
-            AddTransition(transitions, 1, 1, "", a.DMPF, a.ADVM);
-            AddTransition(transitions, 1, 1, "", a.DMPF, a.ADVPB);
-            AddTransition(transitions, 1, 1, "", a.DMPF, a.ADVF);
+            AddProductionRule(a.DMPF, "");
+            AddProductionRule(a.DMPF, a.ADVD);
+            AddProductionRule(a.DMPF, a.ADVM);
+            AddProductionRule(a.DMPF, a.ADVPB);
+            AddProductionRule(a.DMPF, a.ADVF);
 
             //ADVDB
-            AddTransition(transitions, 1, 1, "", a.ADVD, "");
-            AddTransition(transitions, 1, 1, "", a.ADVD, a.ADVOFM, a.ENOUGH);
-            AddTransition(transitions, 1, 1, "", a.VERYTOO, a.ADVOFM);
-            AddTransition(transitions, 1, 1, "", a.ADVOFD, a.ADJCTV);
+            AddProductionRule(a.ADVD, "");
+            AddProductionRule(a.ADVD, a.ADVOFM, a.ENOUGH);
+            AddProductionRule(a.VERYTOO, a.ADVOFM);
+            AddProductionRule(a.ADVOFD, a.ADJCTV);
 
             //ADVMB
-            AddTransition(transitions, 1, 1, "", a.ADVM, "");
-            AddTransition(transitions, 1, 1, "", a.ADVM, a.ADVOFM);
+            AddProductionRule(a.ADVM, "");
+            AddProductionRule(a.ADVM, a.ADVOFM);
 
             //ADVPB
-            AddTransition(transitions, 1, 1, "", a.ADVPB, "");
-            AddTransition(transitions, 1, 1, "", a.ADVPB, a.ADVP);
-            AddTransition(transitions, 1, 1, "", a.ADVPB, a.ADVOFP, a.ADVP);
-            AddTransition(transitions, 1, 1, "", a.ADVP, "");
-            AddTransition(transitions, 1, 1, "", a.ADVP, a.ADVOFPP, a.THE, a.PLACEN);
-            AddTransition(transitions, 1, 1, "", a.ADVP, a.ADVOFPP, a.C);
+            AddProductionRule(a.ADVPB, "");
+            AddProductionRule(a.ADVPB, a.ADVP);
+            AddProductionRule(a.ADVPB, a.ADVOFP, a.ADVP);
+            AddProductionRule(a.ADVP, "");
+            AddProductionRule(a.ADVP, a.ADVOFPP, a.THE, a.PLACEN);
+            AddProductionRule(a.ADVP, a.ADVOFPP, a.C);
 
             //ADVF
-            AddTransition(transitions, 1, 1, "", a.ADVF, "");
-            AddTransition(transitions, 1, 1, "", a.ADVF, a.ADVOFF);
-            AddTransition(transitions, 1, 1, "", a.ADVF, a.EVERY, a.TNS);
-            AddTransition(transitions, 1, 1, "", a.ADVF, a.ADVOFF, a.EVERY, a.TNS);
+            AddProductionRule(a.ADVF, "");
+            AddProductionRule(a.ADVF, a.ADVOFF);
+            AddProductionRule(a.ADVF, a.EVERY, a.TNS);
+            AddProductionRule(a.ADVF, a.ADVOFF, a.EVERY, a.TNS);
 
             foreach (var wordType in words)
             {
                 transitions.AddRange(GetTransitions(wordType.Key.stackID));
             }
 
-            transitions.Add(new PDATransition(1, 2, "", PDA.startStackElement, ""));
+            transitions.Add(new PDATransition(1, 2, "", PDA.initialStackSymbol, ""));
 
             pda = new PDA(inputAlphabet.ToHashSet(), stackAlphabet.allValues, states, 0, transitions);
-        }
-
-        private void AddTransition(List<PDATransition> transitions, int fromState, int toState, string readFromInput, string popElement, params string[] pushElement)
-        {
-            transitions.Add(new PDATransition(fromState, toState, readFromInput, popElement, pushElement));
         }
 
         private List<PDATransition> GetTransitions(string wordTypeStackElement)
@@ -311,12 +310,12 @@ namespace PresentTense
 
         public string Generate()
         {
-            return GetSentenseString(pda.Generate(1));
+            return GetSentenseString(pda.Generate());
         }
 
-        public string GetSentenseString(List<string> words)
+        public string GetSentenseString(string[] words)
         {
-            if (words.Count > 0)
+            if (words.Length > 0)
             {
                 words[0] = words[0].First().ToString().ToUpper() + words[0].Substring(1);
                 return String.Join(" ", words) + ".";

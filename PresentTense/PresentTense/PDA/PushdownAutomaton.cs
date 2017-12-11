@@ -1,17 +1,35 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2017 Tymofii Dolenko
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using Extensions;
 
 namespace PushdownAutomaton
 {
     public enum PDARecognitionResult { InputIsNotValid, Recognized, NotRecognized };
     public class PDA
     {
-        public static string startStackElement = "<Z0>";
+        public static string initialStackSymbol = "<Z0>";
         public IEnumerable<PDATransition> transitions { get; private set; }
         public int startState { get; private set; }
         public ISet<int> states { get; private set; }
@@ -19,7 +37,7 @@ namespace PushdownAutomaton
         public IEnumerable<string> inputAlphabet { get; private set; }
 
         //Initiating random here to pick random transitions
-        private Random random = new Random();
+        private readonly Random random = new Random();
 
         public PDA(IEnumerable<string> inputAlphabet,
                    IEnumerable<string> stackAlphabet,
@@ -35,12 +53,11 @@ namespace PushdownAutomaton
 
         public PDARecognitionResult Recognize(string[] input)
         {
-
             if (IsInputValid(input))
             {
                 var inputStack = new Stack<string>();
 
-                foreach(var element in input.Reverse())
+                foreach (var element in input.Reverse())
                 {
                     inputStack.Push(element);
                 }
@@ -48,12 +65,14 @@ namespace PushdownAutomaton
                 if (CanRecognize(inputStack))
                 {
                     return PDARecognitionResult.Recognized;
-                } else
+                }
+                else
                 {
                     return PDARecognitionResult.NotRecognized;
                 }
 
-            } else
+            }
+            else
             {
                 return PDARecognitionResult.InputIsNotValid;
             }
@@ -66,20 +85,20 @@ namespace PushdownAutomaton
 
         public IEnumerable<PDAResult> GetResults(Stack<string> inputStack)
         {
-            
+
             var results = new HashSet<PDAResult>();
 
-            string[] startStackArray = new string[] { startStackElement };
+            string[] startStackArray = new string[] { initialStackSymbol };
 
-            var conditions = new List<PDACondition>() { new PDACondition(inputStack, new Stack<string>(startStackArray),0) };
+            var conditions = new List<PDACondition>() { new PDACondition(inputStack, new Stack<string>(startStackArray), 0) };
             var hasFoundMatch = false;
 
-            while(conditions.Count > 0 && !hasFoundMatch)
+            while (conditions.Count > 0 && !hasFoundMatch)
             {
 
                 var newCondtionsSet = new HashSet<PDACondition>();
 
-                foreach(var condition in conditions)
+                foreach (var condition in conditions)
                 {
                     var nextConditions = FindNextConditions(condition).ToList();
 
@@ -89,20 +108,21 @@ namespace PushdownAutomaton
                         continue;
                     }
 
-                    foreach(var nextCondition in nextConditions)
+                    foreach (var nextCondition in nextConditions)
                     {
                         if (nextCondition.currentInput.Count == 0 && nextCondition.stack.Count == 0)
                         {
                             results.Add(new PDAResult(true, nextCondition));
                             hasFoundMatch = true;
                             break;
-                        } else
+                        }
+                        else
                         {
                             newCondtionsSet.Add(nextCondition);
                         }
                     }
 
-                    if(hasFoundMatch)
+                    if (hasFoundMatch)
                     {
                         break;
                     }
@@ -130,8 +150,8 @@ namespace PushdownAutomaton
 
         private static PDACondition ApplyTransition(PDATransition transition, PDACondition condition)
         {
-            var newCurrentInput = condition.currentInput.Clone();
-            var newStack = condition.stack.Clone();
+            var newCurrentInput = new Stack<string>(new Stack<string>(condition.currentInput));
+            var newStack = new Stack<string>(new Stack<string>(condition.stack));
             //We always pop something from stack
             newStack.Pop();
 
@@ -141,7 +161,7 @@ namespace PushdownAutomaton
                 newCurrentInput.Pop();
             }
             //Pushing elements to stack
-            foreach(string elementToPush in transition.pushToStack.Reverse())
+            foreach (string elementToPush in transition.pushToStack.Reverse())
             {
                 if (elementToPush != "")
                 {
@@ -152,32 +172,14 @@ namespace PushdownAutomaton
             return new PDACondition(newCurrentInput, newStack, transition.nextState);
         }
 
-        private bool IsInputValid(string[] input)
-        {
-            foreach(var element in input)
-            {
-                if (!inputAlphabet.Contains(element))
-                {
-                    var lowercased = element.ToLower();
-                    if (!inputAlphabet.Contains(lowercased)) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        public List<string> Generate(double lengthCoefficient)
+        public string[] Generate()
         {
 
             List<string> generatedString = new List<string>();
 
-            //Settings boundaries for coefficient [0,1]
-            double coefficient = lengthCoefficient > 1 ? 1 : lengthCoefficient < 0 ? 0 : lengthCoefficient;
-
             var results = new HashSet<PDAResult>();
 
-            string[] startStackArray = new string[] { startStackElement };
+            string[] startStackArray = new string[] { initialStackSymbol };
 
             var condition = new PDACondition(new Stack<string>(), new Stack<string>(startStackArray), 0);
 
@@ -185,27 +187,75 @@ namespace PushdownAutomaton
             {
                 var nextTransitions = FindNextTransitionsForGenerating(condition);
 
-                if (nextTransitions.Count() > 0)
+                if (nextTransitions.Any())
                 {
                     int index = random.Next(0, nextTransitions.Count());
 
                     var nextTransition = nextTransitions.ElementAt(index);
-                    
+
                     if (nextTransition.readFromInput != "")
                     {
                         generatedString.Add(nextTransition.readFromInput);
                         condition.currentInput.Push(nextTransition.readFromInput);
                     }
-                    //Console.WriteLine(condition.ToString());
-                    //Console.WriteLine(nextTransition.ToString());
+
                     condition = ApplyTransition(nextTransition, condition);
-                } else
+                }
+                else
                 {
                     break;
                 }
             }
 
-            return generatedString;
+            return generatedString.ToArray();
+        }
+
+        //Use this split method only if input is not separated by any character
+        //and there is no such alphabet element that is the left side of another element
+        //Example "word" and "wordA" - are not accepted
+        //Whereas "word" and "Aword" - accepted
+        public string[] Split(string input)
+        {
+            List<string> splitted = new List<string>();
+            List<string> hypoStrings = new List<string>();
+            string currentString = "";
+
+            for (int i = 0; i < input.Length; i++)
+            {
+
+                char current = input[i];
+                currentString += current;
+                hypoStrings = inputAlphabet.ToList().FindAll(x => x.Contains(currentString));
+
+                if (hypoStrings.Count == 0)
+                {
+                    throw new Exception("Invalid string.");
+                }
+                else
+                {
+                    if (hypoStrings.Any(x => x == currentString))
+                    {
+                        splitted.Add(currentString);
+                        currentString = "";
+                    }
+                }
+
+
+            }
+
+            return splitted.ToArray();
+        }
+
+        private bool IsInputValid(string[] input)
+        {
+            foreach (var element in input)
+            {
+                if (!inputAlphabet.Contains(element))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
