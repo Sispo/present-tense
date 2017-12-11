@@ -1,14 +1,18 @@
 ﻿<Properties StartupConfiguration="{5074A0E5-36C5-4320-BBAF-891A52361B68}|Default">
   <MonoDevelop.Ide.ItemProperties.PresentTense PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PresentTense/PresentTenseApplication.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PDA/PDACondition.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="14" />
-      <File FileName="PresentTense/PTAStackAlphabet.cs" Line="4" Column="19" />
+      <File FileName="Program.cs" Line="20" Column="4" />
+      <File FileName="PresentTense/PTAStackAlphabet.cs" Line="20" Column="4" />
       <File FileName="Properties/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="App.config" Line="1" Column="1" />
-      <File FileName="PresentTense/PresentTenseWordType.cs" Line="1" Column="1" />
-      <File FileName="PresentTense/PresentTenseWordsLoader.cs" Line="1" Column="1" />
-      <File FileName="PresentTense/PresentTenseApplication.cs" Line="4" Column="1" />
+      <File FileName="PresentTense/PresentTenseWordType.cs" Line="20" Column="4" />
+      <File FileName="PresentTense/PresentTenseWordsLoader.cs" Line="21" Column="1" />
+      <File FileName="PresentTense/PresentTenseApplication.cs" Line="20" Column="4" />
+      <File FileName="PDA/PushdownAutomaton.cs" Line="1" Column="1" />
+      <File FileName="PDA/PDATransition.cs" Line="1" Column="1" />
+      <File FileName="PDA/PDAResult.cs" Line="1" Column="1" />
+      <File FileName="PDA/PDACondition.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

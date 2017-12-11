@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="PDA\PDACondition.cs" />
     <Compile Include="PDA\PDAResult.cs" />
     <Compile Include="PDA\PDATransition.cs" />
