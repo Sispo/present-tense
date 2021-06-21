@@ -1,8 +1,21 @@
-# present-tense
+# Afirmative Sentences Generator
 
-Present Tense is affirmative sentences generator.
+### Related projects
+[Pushdown automaton implementation in C#](https://github.com/tymofiidolenko/pushdown-automaton)
 
-It generates such sentences as:
+[Context-free grammar to pushdown automaton converter](https://github.com/tymofiidolenko/grammarton)
+
+### Grammar preview
+#### CFG (LL)
+
+* S → SB or B or DMPF B or B DMPF
+* SB → SBWPP or SBWPS
+* B → BS or BP
+* BS → SBWPS VS or SBADVMVS or SBADVFVS
+* BP → SBWPP VP or SBADVMVP or SBADVFVP
+* [More...]()
+
+The app generates such sentences as:
 
 >The informal brushes.
 >
@@ -25,4 +38,3 @@ It generates such sentences as:
 >Mckenzie quickly cheats.
 
 It is build on [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar/) using [pushdown automaton](https://en.wikipedia.org/wiki/Pushdown_automaton).
-[Source project for pushdown automaton](https://github.com/Sispo/pushdown-automaton) 
