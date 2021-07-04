@@ -1,6 +1,6 @@
 # Afirmative Sentences Generator
 
-### Related projects
+### My related projects
 [Pushdown automaton implementation in C#](https://github.com/tymofiidolenko/pushdown-automaton)
 
 [Context-free grammar to pushdown automaton converter](https://github.com/tymofiidolenko/grammarton)
